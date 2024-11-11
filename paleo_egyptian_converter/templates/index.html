@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Paleo-Hebrew to Egyptian Converter</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h1>Paleo-Hebrew to Egyptian Hieroglyph Converter</h1>
+        
+        <form method="POST" action="/convert">
+            <textarea name="paleo_text" placeholder="Enter Paleo-Hebrew text here..." required>{{ paleo_text }}</textarea>
+            <button type="submit">Convert</button>
+        </form>
+        
+        {% if egyptian_text %}
+            <div class="result">
+                <h2>Converted Egyptian Hieroglyphs:</h2>
+                <p>{{ egyptian_text }}</p>
+            </div>
+        {% endif %}
+
+        <button class="popup-btn" onclick="togglePopup()">Help</button>
+
+        <!-- Popup -->
+        <div class="popup" id="popup">
+            <div class="popup-content">
+                <span class="close" onclick="togglePopup()">×</span>
+                <h3>How to use:</h3>
+                <p>Enter your Paleo-Hebrew text in the box above and press "Convert" to see the corresponding Egyptian hieroglyphs.</p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function togglePopup() {
+            var popup = document.getElementById("popup");
+            popup.style.display = popup.style.display === "block" ? "none" : "block";
+        }
+    </script>
+</body>
+</html>
